@@ -59,9 +59,18 @@ function generateMealPlan() {
         Dinner: document.getElementById("sundayDinner").value
       }
     };
-  
     var htmlContent = "<html><head><title>Meal Plan</title>";
-    htmlContent += "<style>body { font-family: monospace; }</style>";
+    htmlContent += "<style>";
+    htmlContent += "body { font-family: 'Didot', serif; margin: 20px; color: #444; background-color: #f5f5f5; }";
+    htmlContent += "h1, h2 { text-align: center; color: #7d62a2; }";
+    htmlContent += "table { width: 100%; border-collapse: collapse; background-color: #fff; }";
+    htmlContent += "th, td { padding: 8px; text-align: left; }";
+    htmlContent += "thead th { background-color: #dcd3e3; font-weight: bold; color: #444; }";
+    htmlContent += "tbody td { border-bottom: 1px solid #ddd; }";
+    htmlContent += "button { margin-top: 20px; background-color: #7d62a2; color: #fff; padding: 8px 16px; border: none; cursor: pointer; }";
+    htmlContent += "button:hover { background-color: #593c77; }";
+    htmlContent += "@media print { button { display: none; } }";
+    htmlContent += "</style>";
     htmlContent += "</head><body>";
     htmlContent += "<h1>Meal Plan for the Week</h1>";
     htmlContent += "<h2>Name: " + name + "</h2>";
@@ -79,25 +88,15 @@ function generateMealPlan() {
     }
   
     htmlContent += "</tbody></table>";
-  
     document.write(htmlContent);
     document.write("<button onclick='window.print();'>Print Meal Plan</button>");
     document.write("<button onclick='downloadMealPlan();'>Download Meal Plan</button>");
     document.write("</body></html>");
   }
-
+  
+  // Function to validate email format
   function validateEmail(email) {
     var regex = /\S+@\S+\.\S+/;
     return regex.test(email);
   }
-
-  function downloadMealPlan() {
-    var htmlContent = document.documentElement.innerHTML;
-    var element = document.createElement("a");
-    element.setAttribute("href", "data:text/html;charset=utf-8," + encodeURIComponent(htmlContent));
-    element.setAttribute("download", "meal_plan.htm");
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  }
+  
